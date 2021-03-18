@@ -29,4 +29,13 @@ class Db
         // return data
         return $row;
     }
+
+    public function clean($data)
+    {
+        // connect to db
+        $conn = $this->connect();
+        // sanitize data
+        $sanData = mysqli_real_escape_string($conn, $data);
+        return $sanData;
+    }
 }
