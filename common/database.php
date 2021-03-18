@@ -1,7 +1,8 @@
 <?php
-
+// Database class
 class Db
 {
+    // Database connection function
     public function connect()
     {
         static $connection;
@@ -15,5 +16,17 @@ class Db
         } else {
             return $connection;
         }
+    }
+
+    public function select($query)
+    {
+        // connect to database
+        $conn = $this->connect();
+        // create query
+        $result = mysqli_query($conn, $query);
+        // run query result
+        $row = mysqli_fetch_assoc($result);
+        // return data
+        return $row;
     }
 }
