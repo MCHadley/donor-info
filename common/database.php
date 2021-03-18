@@ -38,4 +38,17 @@ class Db
         $sanData = mysqli_real_escape_string($conn, $data);
         return $sanData;
     }
+
+    public function insert($statement, $message)
+    {
+        // connect to db
+        $conn = $this->connect();
+        // insert data
+        if (mysqli_query($conn, $statement) === TRUE) {
+            echo ($message);
+        } else {
+            echo "Error: ", $statement . "<br>" . $conn->error;
+        }
+        $conn->close();
+    }
 }
