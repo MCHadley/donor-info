@@ -1,5 +1,6 @@
 $(document).ready(function(){
     getCountries();
+    formOperation();
 })
 
 function getCountries(){
@@ -17,8 +18,8 @@ function formCreate(getCountries){
     var optionFill = "<option></option>"
     $(".donor-form").append(
         // Creating Form Div and Adding <h2> and <p> Paragraph Tag in it.
-        $("<h3/>").text("Wikimedia Donor Form"), $("<form/>", {
-        action: 'formaction.php',
+        $("<h1/>").text("Wikimedia Donor Form"), $("<form/>", {
+        action: './review.php',
         method: 'POST'
         }).append(
         // Create <form> Tag and Appending in HTML Div form1.
@@ -90,7 +91,7 @@ function formCreate(getCountries){
             id: 'comments',
             name: 'comments'
         }),
-        $('<button>Submit</button>', {
+        $('<button>Review</button>', {
             id: 'submit',
             name: 'submit',
             type: 'submit'
@@ -120,4 +121,9 @@ function formCreate(getCountries){
         $(optionFill).html('Yearly').val('yearly'),
         $(optionFill).html('Once-time').val('once')
     )
+}
+
+function formOperation(){
+    var submitBtn = $('.finalSubmit')
+    console.log(submitBtn)
 }
