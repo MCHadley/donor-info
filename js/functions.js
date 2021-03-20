@@ -17,6 +17,7 @@ function formCreate(getCountries){
     var optionFill = "<option></option>"
     var inputFill = "<input/>"
     var selectFill = "<select/>"
+    var labelFill = "<label/>"
     $(".donor-form").append(
         // Creating Form Div and Adding <h2> and <p> Paragraph Tag in it.
         $("<h1/>").text("Wikimedia Donor Form"), $("<form/>", {
@@ -97,7 +98,8 @@ function formCreate(getCountries){
         }),
         $("<textarea/>", {
             id: 'comments',
-            name: 'comments'
+            name: 'comments',
+            placeholder: 'Comments'
         }),
         $('<button></button>', {
             id: 'reviewBtn',
@@ -113,6 +115,12 @@ function formCreate(getCountries){
             $(optionFill).html(country).val(country)
         );
     })
+    $('#stateRegion').after('<br>')
+    $('#country').after('<br>')
+    $('#postalCode').before('<br>')
+    $('.contactPref').before('<label>Contact Preference: </label>')
+    $('.paymentPref').before('<br>' + '<label>Currency: </label>')
+    $('.donateFreq').before('<br>' + '<label>Donation Frequency: </label>')
     var contactDrop = $('.contactPref')
     contactDrop.append(
         $(optionFill).html('Phone').val('phone'),
@@ -133,12 +141,16 @@ function formCreate(getCountries){
 
     $('.donor-form').append(
         $('<fieldset/>',{class: 'field2'}).append(
-            $(inputFill, {
+            $(inputFill + 'First Name: ', {
                 type: 'text',
                 id: 'firstName',
                 name: 'firstName',
                 readonly: 'readonly'
-            }), // Creating Input Element With Attribute.
+            }).append(
+                $( 'FirstName' + labelFill, {
+                    for: 'firstName'
+                })
+            ),
             $(inputFill, {
                 type: 'text',
                 id: 'show_lastName',
@@ -212,11 +224,16 @@ function formCreate(getCountries){
                 name: 'comments',
                 readonly: 'readonly',
             }),
-            $('<button></button>', {
+            $('<br><button/>', {
                 id: 'submit',
                 name: 'submit',
                 type: 'submit'
-            }).html('Submit')
+            }).html('Submit'),
+            $('<a/>', {
+                id: 'cancel',
+                name: 'cancel',
+                type: 'cancel'
+            }).html('Cancel')
         )
     )
 
@@ -242,11 +259,15 @@ function formCreate(getCountries){
         $('.field2').css({'display':'block'})
         currencyOps();
     });
+
+    $('#cancel').click(function(){
+        alert('Thank you for your consideration')
+        location.reload()
+    })
 }
 
 function currencyConversion(json){
     var results = json.result
-    var currency = json.query.from
     var freqDon = $('.show_donateFreq').val()
     if(freqDon == 'monthly'){
         var freq = 12
@@ -268,7 +289,6 @@ function currencyOps(){
     var amount = $('#show_amount').val()
     var amountInt = parseInt(amount)
     var freqDon = $('.show_donateFreq').val()
-    // console.log(freqDon)
     if(freqDon == 'monthly'){
         var freq = 12
     }else{
