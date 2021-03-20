@@ -127,8 +127,8 @@ function formCreate(getCountries){
     var dontateFreq = $('.donateFreq')
     dontateFreq.append(
         $(optionFill).html('Monthly').val('monthly'),
-        $(optionFill).html('Yearly').val('yearly'),
-        $(optionFill).html('Once-time').val('once')
+        $(optionFill).html('Yearly').val('Yearly'),
+        $(optionFill).html('One-time').val('One-time')
     )
 
     $('.donor-form').append(
@@ -244,20 +244,55 @@ function formCreate(getCountries){
     });
 }
 
+function currencyConversion(json){
+    var results = json.result
+    var currency = json.query.from
+    var freqDon = $('.show_donateFreq').val()
+    if(freqDon == 'monthly'){
+        var freq = 12
+    }else{
+        var freq = 1
+    }
+    var projDon = results * freq
+    $('#finalForm').after(
+        $('<p/>', {
+            id: 'donateConv'
+        }).html('Projected Donation: $' + projDon + ' USD')
+    )
+}
+
+
 function currencyOps(){
     var fromCur = $('.show_paymentPref').val()
     var toCur = 'USD'
     var amount = $('#show_amount').val()
-    var requestUrl = 'https://api.exchangerate.host/convert?from=' + fromCur + '&to=' + toCur + '&amount=' + amount
-    $.ajax({
-        url: requestUrl,
-        dataType: 'json',
-        success: function(json) {
-            $('#finalForm').after(
-                $('<span/>', {
-                id: 'convertAmount',
-                readonly: 'readonly'
-            }).html(json.result))
-        }
-    })
+    var amountInt = parseInt(amount)
+    var freqDon = $('.show_donateFreq').val()
+    // console.log(freqDon)
+    if(freqDon == 'monthly'){
+        var freq = 12
+    }else{
+        var freq = 1
+    }
+
+    if($('.show_paymentPref').val() != 'usd'){
+        $('#finalForm').after(
+            $('<p/>', {
+                id: 'usdAmount'
+            }).html('Projected Donation: ' + amountInt * freq + ' ' + fromCur)
+        )
+        var requestUrl = 'https://api.exchangerate.host/convert?from=' + fromCur + '&to=' + toCur + '&amount=' + amount
+        $.ajax({
+            url: requestUrl,
+            dataType: 'json',
+            success: currencyConversion
+        })
+    }else{
+        var projDon = freq * amountInt
+        $('#finalForm').after(
+            $('<p/>', {
+                id: 'projectedDonate'
+            }).html('Projected Donation: $' + projDon)
+        )
+    }
 }
