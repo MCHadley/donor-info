@@ -77,6 +77,12 @@ function formCreate(getCountries){
             name: 'Email',
             placeholder: 'Email Address'
         }),
+        $(inputFill, {
+            type: 'text',
+            id: 'amount',
+            name: 'amount',
+            placeholder: 'Donation Amount'
+        }),
         $(selectFill, {
             class: 'contactPref',
             name: 'contactPref',
@@ -179,6 +185,12 @@ function formCreate(getCountries){
                 id: 'show_email',
                 name: 'Email',
                 readonly: 'readonly'
+            }),
+            $(inputFill, {
+                type: 'text',
+                id: 'amount',
+                name: 'amount',
+                readonly: 'readonly',
             }),
             $(inputFill, {
                 class: 'show_contactPref',
