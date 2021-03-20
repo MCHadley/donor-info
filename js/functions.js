@@ -1,6 +1,5 @@
 $(document).ready(function(){
     getCountries();
-    formOperation();
 })
 
 function getCountries(){
@@ -16,74 +15,77 @@ function getCountries(){
 
 function formCreate(getCountries){
     var optionFill = "<option></option>"
+    var inputFill = "<input/>"
+    var selectFill = "<select/>"
     $(".donor-form").append(
         // Creating Form Div and Adding <h2> and <p> Paragraph Tag in it.
         $("<h1/>").text("Wikimedia Donor Form"), $("<form/>", {
-        action: './review.php',
-        method: 'POST'
+        action: '#',
+        method: '#',
+        id: 'myForm'
         }).append(
         // Create <form> Tag and Appending in HTML Div form1.
-        $("<input/>", {
+        $(inputFill, {
             type: 'text',
             id: 'firstName',
             name: 'firstName',
             placeholder: 'First Name'
         }), // Creating Input Element With Attribute.
-        $("<input/>", {
+        $(inputFill, {
             type: 'text',
             id: 'lastName',
             name: 'lastName',
             placeholder: 'Last Name'
         }),
-        $("<input/>", {
+        $(inputFill, {
             type: 'text',
             id: 'streetAddress',
             name: 'streetAddress',
             placeholder: 'Street Address'
         }),
-        $("<input/>", {
+        $(inputFill, {
             type: 'text',
             id: 'city',
             name: 'city',
             placeholder: 'City'
         }),
-        $("<input/>", {
+        $(inputFill, {
             type: 'text',
             id: 'stateRegion',
             name: 'stateRegion',
             placeholder: 'State/Region'
         }),
-        $("<select/>", {
+        $(selectFill, {
             class: 'country',
             name: 'country',
         }),
-        $("<input/>", {
+        $(inputFill, {
             type: 'text',
             id: 'postalCode',
             name: 'postalCode',
             placeholder: 'Postal Code'
         }),
-        $("<input/>", {
+        $(inputFill, {
             type: 'text',
             id: 'phone',
             name: 'phone',
             placeholder: 'Phone Number'
         }),
-        $("<input/>", {
+        $(inputFill, {
             type: 'email',
             id: 'Email',
             name: 'Email',
             placeholder: 'Email Address'
         }),
-        $("<select/>", {
+        $(selectFill, {
             class: 'contactPref',
             name: 'contactPref',
         }),
-        $("<select/>", {
+        $(selectFill, {
             class: 'paymentPref',
             name: 'paymentPref',
         }),
-        $("<select/>", {
+        $(selectFill, {
             class: 'donateFreq',
             name: 'donateFreq',
         }),
@@ -91,12 +93,13 @@ function formCreate(getCountries){
             id: 'comments',
             name: 'comments'
         }),
-        $('<button>Review</button>', {
-            id: 'submit',
-            name: 'submit',
-            type: 'submit'
-        })
+        $('<button></button>', {
+            id: 'reviewBtn',
+            name: 'review',
+            type: 'button'
+        }).html('Review')
     ));
+    $('#myForm').wrapInner("<fieldset class='field1 current'/>")
     var countryDrop = $('.country');
     var countryArray = getCountries.split("\n");
     countryArray.forEach(function(country){
@@ -121,9 +124,121 @@ function formCreate(getCountries){
         $(optionFill).html('Yearly').val('yearly'),
         $(optionFill).html('Once-time').val('once')
     )
-}
 
-function formOperation(){
-    var submitBtn = $('.finalSubmit')
-    console.log(submitBtn)
+    $('.donor-form').append(
+        $('<fieldset/>',{class: 'field2'}).append(
+            $(inputFill, {
+                type: 'text',
+                id: 'firstName',
+                name: 'firstName',
+                readonly: 'readonly'
+            }), // Creating Input Element With Attribute.
+            $(inputFill, {
+                type: 'text',
+                id: 'show_lastName',
+                name: 'lastName',
+                readonly: 'readonly'
+            }),
+            $(inputFill, {
+                type: 'text',
+                id: 'show_streetAddress',
+                name: 'streetAddress',
+                readonly: 'readonly'
+            }),
+            $(inputFill, {
+                type: 'text',
+                id: 'show_city',
+                name: 'city',
+                readonly: 'readonly'
+            }),
+            $(inputFill, {
+                type: 'text',
+                id: 'show_stateRegion',
+                name: 'stateRegion',
+                readonly: 'readonly'
+            }),
+            $(inputFill, {
+                class: 'show_country',
+                name: 'country',
+                readonly: 'readonly',
+            }),
+            $(inputFill, {
+                type: 'text',
+                id: 'show_postalCode',
+                name: 'postalCode',
+                readonly: 'readonly'
+            }),
+            $(inputFill, {
+                type: 'text',
+                id: 'show_phone',
+                name: 'phone',
+                readonly: 'readonly'
+            }),
+            $(inputFill, {
+                type: 'email',
+                id: 'show_email',
+                name: 'Email',
+                readonly: 'readonly'
+            }),
+            $(inputFill, {
+                class: 'show_contactPref',
+                name: 'contactPref',
+                readonly: 'readonly',
+            }),
+            $(inputFill, {
+                class: 'show_paymentPref',
+                name: 'paymentPref',
+                readonly: 'readonly',
+            }),
+            $(inputFill, {
+                class: 'show_donateFreq',
+                name: 'donateFreq',
+                readonly: 'readonly',
+            }),
+            $(inputFill, {
+                id: 'show_comments',
+                name: 'comments',
+                readonly: 'readonly',
+            }),
+            $('<button></button>', {
+                id: 'submit',
+                name: 'submit',
+                type: 'button'
+            }).html('Submit')
+        )
+    )
+
+    $('#reviewBtn').click(function () {
+        var formValues = [];
+        // get values from inputs in first fieldset
+        $('.field1 :input').each(function () {
+            formValues.push($(this).val());
+        });
+        
+        formValues.pop(); //remove the button from input values
+        
+        // set values in second fieldset
+        $('.field2 :input').each(function (index) {
+            if (formValues[index]) {
+                $(this).val(formValues[index]);  
+            }
+        });
+
+        $('.field1').addClass('hidden')
+        $('.field2').css({'display':'block'})
+
+    });
+
+    var formData = $('#myForm').val()
+
+    $('#submit').click(function(event){
+        $.ajax({
+            type: "POST",
+            url: "./formaction.php",
+            data: formData,
+            success: function(data) {
+                window.location.href = './formaction.php'
+            }
+        });
+    });
 }
