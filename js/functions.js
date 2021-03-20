@@ -203,10 +203,12 @@ function formCreate(getCountries){
             $('<button></button>', {
                 id: 'submit',
                 name: 'submit',
-                type: 'button'
+                type: 'submit'
             }).html('Submit')
         )
     )
+
+    $('.field2').wrap("<form id='finalForm' action='./formaction.php' method='POST'/>")
 
     $('#reviewBtn').click(function () {
         var formValues = [];
@@ -226,19 +228,5 @@ function formCreate(getCountries){
 
         $('.field1').addClass('hidden')
         $('.field2').css({'display':'block'})
-
-    });
-
-    var formData = $('#myForm').val()
-
-    $('#submit').click(function(event){
-        $.ajax({
-            type: "POST",
-            url: "./formaction.php",
-            data: formData,
-            success: function(data) {
-                window.location.href = './formaction.php'
-            }
-        });
     });
 }
