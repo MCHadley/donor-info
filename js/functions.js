@@ -121,7 +121,7 @@ function formCreate(getCountries){
     var payDrop = $('.paymentPref')
     payDrop.append(
         $(optionFill).html('USD').val('usd'),
-        $(optionFill).html('Euro').val('euro'),
+        $(optionFill).html('Euro').val('eur'),
         $(optionFill).html('Bitcoin').val('btc')
     )
     var dontateFreq = $('.donateFreq')
@@ -188,7 +188,7 @@ function formCreate(getCountries){
             }),
             $(inputFill, {
                 type: 'text',
-                id: 'amount',
+                id: 'show_amount',
                 name: 'amount',
                 readonly: 'readonly',
             }),
@@ -240,5 +240,20 @@ function formCreate(getCountries){
 
         $('.field1').addClass('hidden')
         $('.field2').css({'display':'block'})
+        currencyOps();
     });
+}
+
+function currencyOps(){
+    var fromCur = $('.show_paymentPref').val()
+    var toCur = 'USD'
+    var amount = $('#show_amount').val()
+    var requestUrl = 'https://api.exchangerate.host/convert?from=' + fromCur + '&to=' + toCur + '&amount=' + amount
+    $.ajax({
+        url: requestUrl,
+        dataType: 'json',
+        success: function(json) {
+            console.log(json.result)
+        }
+    })
 }
