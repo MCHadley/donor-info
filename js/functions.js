@@ -253,7 +253,11 @@ function currencyOps(){
         url: requestUrl,
         dataType: 'json',
         success: function(json) {
-            console.log(json.result)
+            $('#finalForm').after(
+                $('<span/>', {
+                id: 'convertAmount',
+                readonly: 'readonly'
+            }).html(json.result))
         }
     })
 }
