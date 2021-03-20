@@ -141,16 +141,12 @@ function formCreate(getCountries){
 
     $('.donor-form').append(
         $('<fieldset/>',{class: 'field2'}).append(
-            $(inputFill + 'First Name: ', {
+            $(inputFill, {
                 type: 'text',
                 id: 'firstName',
                 name: 'firstName',
                 readonly: 'readonly'
-            }).append(
-                $( 'FirstName' + labelFill, {
-                    for: 'firstName'
-                })
-            ),
+            }),
             $(inputFill, {
                 type: 'text',
                 id: 'show_lastName',
