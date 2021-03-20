@@ -17,7 +17,6 @@ function formCreate(getCountries){
     var optionFill = "<option></option>"
     var inputFill = "<input/>"
     var selectFill = "<select/>"
-    var labelFill = "<label/>"
     $(".donor-form").append(
         // Creating Form Div and Adding <h2> and <p> Paragraph Tag in it.
         $("<h1/>").text("Wikimedia Donor Form"), $("<form/>", {
