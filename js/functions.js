@@ -228,7 +228,11 @@ function formCreate(getCountries){
                 id: 'cancel',
                 name: 'cancel',
                 type: 'cancel'
-            }).html('Cancel')
+            }).html('Cancel'),
+            $('<a/>', {
+                id: 'edit',
+                name: 'edit'
+            }).html('Edit')
         )
     )
 
@@ -258,7 +262,11 @@ function formCreate(getCountries){
     $('#cancel').click(function(){
         alert('Thank you for your consideration')
         location.reload()
-    })
+    });
+
+    $('#edit').click(function(){
+        $('.field2 input').removeAttr('readonly').toggleClass('editable')
+    });
 }
 
 function currencyConversion(json){
