@@ -27,7 +27,7 @@ select {
 }
 
 /*inputs*/
- #myForm input {
+ .field1 input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -63,7 +63,7 @@ button, a {
     margin: 5px;
 }
 
-#myForm textarea {
+.field1 textarea {
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -74,7 +74,7 @@ button, a {
     font-size: 13px;
 }
 /*buttons*/
- #myForm .action-button {
+ .field1 .action-button {
     width: 100px;
     font-weight: bold;
     border: 0 none;
@@ -83,7 +83,7 @@ button, a {
     padding: 10px 5px;
     margin: 10px 5px;
 }
-#myForm .action-button:hover, #myForm .action-button:focus {
+.field1 .action-button:hover, .field1 .action-button:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #900;
 }
 /*Form labels*/
