@@ -21,7 +21,6 @@ select {
     border: 1px solid #ccc;
     border-radius: 3px;
     margin-bottom: 10px;
-    /* color: #2C3E50; */
     font-size: 13px;
 }
 
@@ -36,7 +35,7 @@ select {
     font-size: 13px;
 }
 
-#finalForm fieldset {
+.donor-form {
     width: 50%;
 }
 
@@ -88,15 +87,7 @@ button, a {
 /*Form labels*/
  label.form-label {
     text-align: left;
-}
-/*Phone Label Align*/
- input#phone-field {
-    margin-left: 26px;
-}
-/*E-mail Label Align*/
- input#email-field {
-    margin-left: 24px;
-}
+ }
 .counter-field {
     font-size: 10px;
 }
