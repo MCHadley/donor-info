@@ -2,6 +2,7 @@ $(document).ready(function(){
     getCountries();
 })
 
+// Get country list
 function getCountries(){
     $.ajax({
         url: `https://gist.githubusercontent.com/kalinchernev/486393efcca01623b18d/raw/daa24c9fea66afb7d68f8d69f0c4b8eeb9406e83/countries`,
@@ -23,6 +24,7 @@ function formCreate(getCountries){
         );
     })
 
+    // When review is clicked, pop the values out of the first form and into the other
     $('#reviewBtn').click(function () {
         var formValues = [];
         // get values from inputs in first fieldset
@@ -38,18 +40,22 @@ function formCreate(getCountries){
                 $(this).val(formValues[index]);  
             }
         });
-
+        // Hide the first form and show the second
         $('.field1').addClass('hidden')
         $('.field2').css({'display':'block'})
+
+        // Currency calculation and conversion if needed
         currencyOps();
     });
 
+    // Reloads the window and clears the inputs
     $('#cancel').click(function(){
         alert('Thank you for your consideration')
         location.reload()
         $('input').val('')
     });
 
+    // Make form2 editable
     $('#edit').click(function(){
         $('.field2 input').removeAttr('readonly').toggleClass('editable')
     });
