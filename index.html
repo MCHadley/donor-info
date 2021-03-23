@@ -10,7 +10,57 @@
 </head>
 
 <body>
-    <div class="donor-form"></div>
+    <h1>Wikimedia Donor Form</h1>
+    <div class="donor-form">
+        <fieldset class="field1 current">
+            <input type="text" id="firstName" name="firstName" placeholder="First Name"><br>
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name">
+            <input type="text" id="streetAddress" name="streetAddress" placeholder="Street Address">
+            <input type="text" id="city" name="city" placeholder="City">
+            <input type="text" id="stateRegion" name="stateRegion" placeholder="State/Region">
+            <br><select class="country" name="country"></select><br>
+            <input type="text" id="postalCode" name="postalCode" placeholder="Postal Code">
+            <input type="text" id="phone" name="phone" placeholder="Phone Number">
+            <input type="email" id="Email" name="Email" placeholder="Email Address">
+            <input type="text" id="amount" name="amount" placeholder="Donation Amount"><br>
+            <label>Contact Preference: </label>
+            <select class="contactPref" name="contactPref">
+                <option value="phone">Phone</option>
+                <option value="email">Email</option>
+            </select><br><label>Currency: </label><select class="paymentPref" name="paymentPref">
+                <option value="usd">USD</option>
+                <option value="eur">Euro</option>
+                <option value="btc">Bitcoin</option>
+            </select><br><label>Donation Frequency: </label><select class="donateFreq" name="donateFreq">
+                <option value="monthly">Monthly</option>
+                <option value="Yearly">Yearly</option>
+                <option value="One-time">One-time</option>
+            </select>
+            <textarea id="comments" name="comments" placeholder="Comments"></textarea>
+            <button id="reviewBtn" name="review" type="button">Review</button>
+        </fieldset>
+        <form id="finalForm" action="./formaction.php" method="POST">
+            <fieldset class="field2">
+                <input type="text" id="firstName" name="firstName" readonly="readonly">
+                <input type="text" id="show_lastName" name="lastName" readonly="readonly">
+                <input type="text" id="show_streetAddress" name="streetAddress" readonly="readonly">
+                <input type="text" id="show_city" name="city" readonly="readonly">
+                <input type="text" id="show_stateRegion" name="stateRegion" readonly="readonly">
+                <input class="show_country" name="country" readonly="readonly">
+                <input type="text" id="show_postalCode" name="postalCode" readonly="readonly">
+                <input type="text" id="show_phone" name="phone" readonly="readonly">
+                <input type="email" id="show_email" name="Email" readonly="readonly">
+                <input type="text" id="show_amount" name="amount" readonly="readonly">
+                <input class="show_contactPref" name="contactPref" readonly="readonly">
+                <input class="show_paymentPref" name="paymentPref" readonly="readonly">
+                <input class="show_donateFreq" name="donateFreq" readonly="readonly">
+                <input id="show_comments" name="comments" readonly="readonly"><br>
+                <button id="submit" name="submit" type="submit">Submit</button>
+                <a id="cancel" name="cancel" type="cancel">Cancel</a>
+                <a id="edit" name="edit">Edit</a>
+            </fieldset>
+        </form>
+    </div>
 </body>
 
 </html>

@@ -19,15 +19,13 @@ select {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
-    background-color: ;
     border-radius: 3px;
     margin-bottom: 10px;
-    /* color: #2C3E50; */
     font-size: 13px;
 }
 
 /*inputs*/
- #myForm input {
+ .field1 input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -37,7 +35,7 @@ select {
     font-size: 13px;
 }
 
-#finalForm fieldset {
+.donor-form {
     width: 50%;
 }
 
@@ -63,7 +61,7 @@ button, a {
     margin: 5px;
 }
 
-#myForm textarea {
+.field1 textarea {
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -74,7 +72,7 @@ button, a {
     font-size: 13px;
 }
 /*buttons*/
- #myForm .action-button {
+ .field1 .action-button {
     width: 100px;
     font-weight: bold;
     border: 0 none;
@@ -83,21 +81,13 @@ button, a {
     padding: 10px 5px;
     margin: 10px 5px;
 }
-#myForm .action-button:hover, #myForm .action-button:focus {
+.field1 .action-button:hover, .field1 .action-button:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #900;
 }
 /*Form labels*/
  label.form-label {
     text-align: left;
-}
-/*Phone Label Align*/
- input#phone-field {
-    margin-left: 26px;
-}
-/*E-mail Label Align*/
- input#email-field {
-    margin-left: 24px;
-}
+ }
 .counter-field {
     font-size: 10px;
 }
